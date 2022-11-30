@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sales_order_inherit" model="ir.ui.view">
+        <field name="name">sale.order.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="patient_name"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="res_partner_inherit" model="ir.ui.view">
+        <field name="name">res.partner.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="mobile" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="email" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+<!--            <field name="website" position="attributes">
+                <attribute name="attrs">{'invisible': [('company_type', '=', 'person')]}</attribute>
+            </field>-->
+        </field>
+    </record>
+    
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field name="name">Appointment Yasin</field>
+    </record>
+    
+    <!--First Method-->
+    <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+        <field name="name">New Quotations Yasin</field>
+        <field name="sequence">100</field>
+    </record>
+    
+    <!--Second Method-->
+    <menuitem id="sale.menu_sale_order"
+        name="New Orders Y2"
+        action="sale.action_orders"
+        parent="sale.sale_order_menu"
+        sequence="2" groups="sales_team.group_sale_salesman"/>
+    
+   
+</odoo>
